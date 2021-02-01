@@ -10,19 +10,17 @@ dockerpath="elbehairy/amr:latest"
 # Step 2
 # Run the Docker Hub container with kubernetes
 
-
-microk8s.kubectl run amr --image=$dockerpath --port=80
-
+kubectl run cluster-pod \
+    --generator=run-pod/v1\
+    --image=$dockerpath\
+    --port=80 --labels app=cluster-pod
 
 
 # Step 3:
-
 # List kubernetes pods
-
-microk8s.kubectl  get pods
-
+kubectl get pods
 # Step 4:
 # Forward the container port to a host
+kubectl port-forward cluster-pod  8000:80
 
-microk8s.kubectl  port-forward amr  8000:80
 
