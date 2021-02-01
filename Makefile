@@ -4,18 +4,19 @@
 # Dockerfile should pass hadolint
 # app.py should pass pylint
 # (Optional) Build a simple integration test
-
+##!/bin/bash
 setup:
 	# Create python virtualenv & source it
-	# source ~/.devops/bin/activate
 	python3 -m venv ~/.devops
+	# source ~/.devops/bin/activate
 
 install:
 	# This should be run from inside a virtualenv
-	pip3  install --upgrade pip &&\
-		pip3  install -r requirements.txt
-	wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
-	chmod +x /bin/hadolint
+	pip install --upgrade pip &&\
+		pip install --trusted-host pypi.python.org -r requirements.txt
+	# wget -O /bin/hadolint https://github.com/hadolint/hadolint/releases/download/v1.16.3/hadolint-Linux-x86_64
+	# chmod 775 /bin/hadolint
+
 
 test:
 	# Additional, optional, tests could go here
@@ -29,5 +30,3 @@ lint:
 	# This is a linter for Python source code linter: https://www.pylint.org/
 	# This should be run from inside a virtualenv
 	pylint --disable=R,C,W1203 app.py
-
-all: install lint test
