@@ -5,7 +5,7 @@
 # Step 1:
 # Build image and add a descriptive tag
 
-docker build --tag=amr  /udicity/Docker-Project
+docker build --tag=elbehairy/amr .
 
 # Step 2: 
 # List docker images
@@ -16,4 +16,4 @@ docker image ls
 # Step 3: 
 # Run flask app
 
-docker run -p 8000:80 amr
+docker run -p 8000:80 elbehairy/amr 
